@@ -3,15 +3,33 @@ $def with (post, title)
 <html>
 	<title>$title - I Hack Everything</title>
 	<head>
+		<link href='http://fonts.googleapis.com/css?family=Michroma|Gafata|Fanwood+Text|Faster+One' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="../static/style.css">
-		<b><h1><a href='/'>I Hack Everything</a></h1></b>
-		<h4><em>hack ~ a clever solution to a tricky problem.</em></h4>
+		<center>
+			<div id="header">
+			<b><h1><a href='/'><font face='Faster One'>I Hack Everything</font></a></h1></b>
+			<h4><em>hack ~ a clever solution to a tricky problem.</em></h4>
+			</div>
+		</center>
 	<body>
 		<div id='wrap'>
-			<div id='main'>
-			<b><h3><center>$title</center></h3></b>
-				$:post
+			<div id="sidebar-left">
+				<a href='/'>Home</a><p>
+				<a href='http://github.com/nickpetty'>GitHub</a><p>
+				<a href='http://twitter.com/nmpetty'>Twitter</a><p>
 			</div>
+
+			<div id='main'>
+				<font face='Fanwood Text'>
+					<b><h3><center>$title</center></h3></b>
+					$:post
+				</font>
+			</div>
+			<div id='footer'>
+				<center><em>Nicholas M. Petty - powered by webpy</em></center>
+			</div>
+
 		</div>
 	</body>
+
 </html>

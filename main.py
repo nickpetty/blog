@@ -20,7 +20,7 @@ class index():
 		for line in postDictFile:
 			postData = line.split(':') # 0 - Title, 1 - id, 2 - fileName
 			summary = open('static/posts/' + postData[2].strip('\n')).read()
-			postList += '<b><h3><center><a href="post/' + str(postData[1]) + '">' + str(postData[0]) + '</a></center></h3></b><p>\n' + summary[0:600] + '...' + '<p>\n'
+			postList += '<h3><center><a href="post/' + str(postData[1]) + '"><b>' + str(postData[0]) + '</b></a></center></h3><p>\n' + summary[0:600] + '...' + '<p>\n'
 
 		postDictFile.close()
 		return self.render.index(postList)

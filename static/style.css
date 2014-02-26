@@ -1,0 +1,36 @@
+body, html{
+	margin:0;
+	margin:0;
+}
+
+a:link {text-decoration:none;color:000000;}
+a:visited {text-decoration:none;color:000000;}
+a:hover {text-decoration:none;color:000000;}
+a:active {text-decoration:none;color:000000;}
+
+#wrap {
+	width:750px;
+	margin:0 auto;
+	background:#99c;
+}
+
+#main {
+	float:left;
+	width:600px;
+	padding:10px;
+	background:#9c9;
+}
+
+#sidebar-left {
+	float:left;
+	width:auto;
+	padding:10px;
+	background:#c9c;
+}
+
+#sidebar-right {
+	float:right;
+	width:auto;
+	padding:10px;
+	background:#c9c;
+}

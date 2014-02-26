@@ -1,8 +1,30 @@
 $def with (post)
 <html>
+
 	<title>I Hack Everything</title>
-	<head><h1><b><center>I Hack Everything</center></b></h1></head>
-		$:post
+
+	<head>
+		<link rel="stylesheet" type="text/css" href="../static/style.css">
+		<h1><b>I Hack Everything</b></h1>
+		<h4><em>hack ~ a clever solution to a tricky problem.</em></h4>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div id="sidebar-left">
+				Testing<p>
+				Testing1<p>
+				Testing2<p>
+			</div>
+
+			<div id="main">$:post</div>
+		
+			<div id="sidebar-left">
+				Testing<p>
+				Testing1<p>
+				Testing2<p>
+			</div>
+		</div>
 	</body>
 </html>
 

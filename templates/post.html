@@ -2,8 +2,16 @@ $def with (post, title)
 
 <html>
 	<title>$title - I Hack Everything</title>
-	<head><center><b><h1><a href='/'>I Hack Everything</a></h1></b></center></head>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../static/style.css">
+		<b><h1><a href='/'>I Hack Everything</a></h1></b>
+		<h4><em>hack ~ a clever solution to a tricky problem.</em></h4>
 	<body>
-		$:post
+		<div id='wrap'>
+			<div id='main'>
+			<b><h3><center>$title</center></h3></b>
+				$:post
+			</div>
+		</div>
 	</body>
 </html>

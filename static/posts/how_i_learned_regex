@@ -1,5 +1,3 @@
-<b><h3><center>How I Learned RegEx In One Week</center></b></h3>
-<p>
 There was a time, when looking for a solution to a problem, that I would come across a simple line of regex to fix my problem.  To be honest, I didn’t want to use something that I didn’t understand in any of my code, especially in production.  I was so scared of what seemed to be so hard to use or learn, that I would rather type tens of unstable lines of code to do that exact same thing.  Then one day I just decided out of the blue… let’s learn how to read and write regular expressions.  With a quick Google, I found many sites offering tutorials and classes.  This was probably the hardest part: finding something that wouldn’t be too easy that I wouldn’t learn anything, but not too hard that it would turn me off completely.
 <p>
 <b>RegexOne</b>

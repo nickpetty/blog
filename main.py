@@ -13,13 +13,16 @@ class index():
 
 	def GET(self):
 		postDictFile = open('postDict', 'r')
-		postDict = []
+		postDict = {}
+		postData = ''
 		postList = ''
 
 		for line in postDictFile:
 			postData = line.split(':') # 0 - Title, 1 - id, 2 - fileName
-			postList += '<a href="post/' + str(postData[1]) + '">' + str(postData[0]) + '</a>' + '<p>'
+			summary = open('static/posts/' + postData[2].strip('\n')).read()
+			postList += '<b><h3><center><a href="post/' + str(postData[1]) + '">' + str(postData[0]) + '</a></center></h3></b><p>\n' + summary[0:600] + '...' + '<p>\n'
 
+		postDictFile.close()
 		return self.render.index(postList)
 
 class post():
@@ -41,9 +44,11 @@ class post():
 		postData = postID.split(':')
 
 		post = open('static/posts/' + postData[0], 'r')
+		postDictFile.close()
 
 		return self.render.post(post=post.read(), title=postData[1])
-		
+		post.close()
+
 if __name__ == "__main__":
     app = web.application(urls, globals())
     app.run()

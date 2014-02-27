@@ -1,9 +1,12 @@
 import web
+from web import form
 import re
 import os
+import markdown
+import yaml
 
 render = web.template.render('templates/')
-urls = ('/', 'index', '/post/(.*)', 'post')
+urls = ('/', 'index', '/post/(.*)', 'post', '/edit', 'edit', '/login', 'login')
 
 class index():
 
@@ -49,6 +52,84 @@ class post():
 		return self.render.post(post=post.read(), title=postData[1])
 		post.close()
 
+editPost = form.Form(form.Textbox('postTitle'), form.Textarea('post'))
+
+class edit():
+
+	def __init__(self):
+		self.render = web.template.render('templates/')
+		f = open('user', 'r')
+		if '0' in f.read():
+			raise web.seeother('/login')
+		#check to see if use is logged in
+		#if not, seeother 'login'
+		#if yes, proceed
+
+	def GET(self):
+		form = editPost()
+		return render.edit(form)
+
+	def POST(self):
+		inputFromForm = web.input()
+		post = inputFromForm.post
+		postTitle = inputFromForm.postTitle
+
+		f = open('temp', 'w')
+		f.write(post)
+		f.close()
+
+		f = open('temp', 'r+')
+
+		draft = f.read()
+
+		html = markdown.markdown(draft)
+		return render.preview(html)
+
+		#get input from text box and run it through markdown converter
+		#save to file
+		#save to postDict file
+
+loginForm = form.Form(form.Textbox('username'), form.Textbox('password'))
+
+class login():
+
+	def __init__(self):
+		self.render = web.template.render('templates/')
+		#check to see if user is already logged in
+
+	def GET(self):
+		form = loginForm()
+		users = open('users.yaml', 'r').read()
+		yaml.load(users)
+		print yaml['nicholas']
+
+
+		#present user login form
+
+	def POST(self):
+		form = loginForm()
+		inputFromForm = web.input()
+		username = inputFromForm.username
+		password = inputFromForm.password
+
+		if username == 'user' and password == 'pass':
+			f = open('user', 'w')
+			f.write('1')
+			raise web.seeother('/edit')
+		else:
+			return render.login(form, var1='Wrong username/password')
+
+		#get login info, save to file (db)
+
 if __name__ == "__main__":
     app = web.application(urls, globals())
     app.run()
+
+
+
+
+
+
+
+
+

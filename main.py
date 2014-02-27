@@ -2,11 +2,11 @@ import web
 from web import form
 import re
 import os
-import markdown
+import markdown2
 import yaml
 
 render = web.template.render('templates/')
-urls = ('/', 'index', '/post/(.*)', 'post', '/edit', 'edit', '/login', 'login')
+urls = ('/', 'index', '/post/(.*)', 'post', '/create', 'createPost', '/login', 'login')
 
 class index():
 
@@ -52,9 +52,9 @@ class post():
 		return self.render.post(post=post.read(), title=postData[1])
 		post.close()
 
-editPost = form.Form(form.Textbox('postTitle'), form.Textarea('post'))
+editPost = form.Form(form.Textbox('Title'), form.Textarea('post', rows=30, cols=60))
 
-class edit():
+class createPost():
 
 	def __init__(self):
 		self.render = web.template.render('templates/')
@@ -67,22 +67,14 @@ class edit():
 
 	def GET(self):
 		form = editPost()
-		return render.edit(form)
+		return render.create(form)
 
 	def POST(self):
 		inputFromForm = web.input()
 		post = inputFromForm.post
-		postTitle = inputFromForm.postTitle
+		postTitle = inputFromForm.Title
 
-		f = open('temp', 'w')
-		f.write(post)
-		f.close()
-
-		f = open('temp', 'r+')
-
-		draft = f.read()
-
-		html = markdown.markdown(draft)
+		html = markdown2.markdown(post)
 		return render.preview(html)
 
 		#get input from text box and run it through markdown converter
@@ -115,7 +107,7 @@ class login():
 		if username == 'user' and password == 'pass':
 			f = open('user', 'w')
 			f.write('1')
-			raise web.seeother('/edit')
+			raise web.seeother('/create')
 		else:
 			return render.login(form, var1='Wrong username/password')
 
